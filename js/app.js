@@ -61,7 +61,9 @@ function checkLetter(clicked) {
   }
 };
 
-keys.addEventListener('click', (e) => {
-  e.target.className = "chosen";
-  const letterFound = checkLetter(e.target);
-})
+for (let i = 0; i < keys.length; i +=1) {
+  keys[i].addEventListener('click', (e) => {
+    e.target.className = "chosen";
+    const letterFound = checkLetter(e.target);
+  })
+}
