@@ -1,5 +1,6 @@
 const keyboard = document.getElementById('qwerty');
-const keys = keyboard.children;
+const keyRows = document.getElementsByClassName('keyrow');
+const keys = keyRows.children;
 const phrase = document.getElementById('phrase');
 let missed = 0;
 const gameStart = document.getElementsByClassName('btn__reset')[0];
