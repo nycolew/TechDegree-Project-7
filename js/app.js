@@ -1,6 +1,6 @@
 const keyboard = document.getElementById('qwerty');
 const keyRows = document.getElementsByClassName('keyrow');
-const keys = keyRows.children;
+const keys = document.querySelectorAll('.keyrow button');
 const phrase = document.getElementById('phrase');
 let missed = 0;
 const gameStart = document.getElementsByClassName('btn__reset')[0];
@@ -51,9 +51,10 @@ function checkLetter(clicked) {
   const lettersInAnswer = document.getElementsByClassName('letter');
   for (let i = 0; i < lettersInAnswer; i +=1) {
     const guess = clicked.textContent;
-    if (lettersInAnswer[i] === guess) {
-      const li = lettersInAnswer[i].parentNode();
-      li.className = "show";
+      if (lettersInAnswer[i].textContent === guess) {
+      lettersInAnswer[i].className = "show";
+      const letterMatch = lettersInAnswer[i].textContent;
+      return letterMatch;
     }
     else {
       return null;
@@ -61,9 +62,10 @@ function checkLetter(clicked) {
   }
 };
 
+
 for (let i = 0; i < keys.length; i +=1) {
   keys[i].addEventListener('click', (e) => {
     e.target.className = "chosen";
     const letterFound = checkLetter(e.target);
   })
-}
+};
