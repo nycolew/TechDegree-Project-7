@@ -31,7 +31,11 @@ function getRandomPhraseAsArray(array) {
   return letters;
 };
 
+// Set phrase letters array to global variable
+
 const phraseLetters = getRandomPhraseAsArray(phrases);
+
+// Add phrase to the game board
 
 function addPhraseToDisplay(array) {
   for (let i = 0; i < array.length; i += 1) {
@@ -42,30 +46,71 @@ function addPhraseToDisplay(array) {
     if (array[i] !== ' ') {
       li.className = "letter";
     }
+    else if (array[i] === ' '){
+      li.className = "space";
+    }
   }
 };
 
 addPhraseToDisplay(phraseLetters);
 
-function checkLetter(clicked) {
-  const lettersInAnswer = document.getElementsByClassName('letter');
-  for (let i = 0; i < lettersInAnswer; i +=1) {
-    const guess = clicked.textContent;
-      if (lettersInAnswer[i].textContent === guess) {
-      lettersInAnswer[i].className = "show";
-      const letterMatch = lettersInAnswer[i].textContent;
-      return letterMatch;
-    }
-    else {
-      return null;
+// Create a checkLetter function.
+
+function checkLetter(button) {
+  // Get all elements with class of "letter"
+  const letters = document.getElementsByClassName('letter');
+  const buttonText = button.textContent;
+  let letterFound = null;
+  // Loop over the letters and check if they match the letter in the button chosen
+  for (let i = 0; i < letters.length; i +=1) {
+    if (letters[i].textContent.toLowerCase() === buttonText) {
+      // If match, add 'show class to LI containing letter,
+      letters[i].classList.add('show');
+      // Store letter as a variable,
+      letterFound = letters[i].textContent;
     }
   }
-};
+  // And return letter
+  return letterFound;
+}
+
+// Listen to only button events from the keyboard
+
+keyboard.addEventListener('click', (e) => {
+  // When a letter is clicked, add 'chosen' class to that button
+  e.target.classList.add('chosen');
+  //and disable the button by adding "disabled" attribute
+  e.target.createAttribute('disabled');
+  //Pass the button to the checkLetter function,
+  checkLetter(e.target);
+})
 
 
-for (let i = 0; i < keys.length; i +=1) {
-  keys[i].addEventListener('click', (e) => {
-    e.target.className = "chosen";
-    const letterFound = checkLetter(e.target);
-  })
-};
+
+
+
+
+//
+//
+// function checkLetter(clicked) {
+//   const lettersInAnswer = document.getElementsByClassName('letter');
+//   for (let i = 0; i < lettersInAnswer.length; i +=1) {
+//     const guess = clicked.textContent;
+//       if (lettersInAnswer[i].textContent.toLowerCase() === guess) {
+//       lettersInAnswer[i].classList.add('show');
+//       const letterMatch = guess;
+//       return letterMatch;
+//     }
+//     else {
+//       return null;
+//     }
+//   }
+// };
+//
+//
+// for (let i = 0; i < keys.length; i +=1) {
+//   keys[i].addEventListener('click', (e) => {
+//     e.target.className = "chosen";
+//     const letterFound = checkLetter(e.target);
+//   })
+// };
