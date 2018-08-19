@@ -4,17 +4,20 @@
 /* Variables */
 
 :root {
+  --color-background: #D2EEF7;
   --color-win: #78CF82;
   --color-lose: #D94545;
   --color-start: #0F55A9;
   --color-neutral: #445069;
-  --color-neutral-light: #D2D2D2;
-  --color-keys: #37474F;
+  --color-neutral-light: #fff;
+  --color-keys: #E6F5FA;
   --color-keys-light: #E5E5E5;
-  --font-size-large: 60px;
-  --font-size-medium: 20px;
+  --font-size-large: 80px;
+  --font-size-medium: 30px;
   --transition: all .3s ease-in-out;
 }
+
+/* #D2D2D2 */
 
 /* main */
 
@@ -27,6 +30,7 @@ body {
   flex-direction: column;
   display: flex;
   height: 100vh;
+  background-color: var(--color-background);
 }
 
 li, ol, ul {
@@ -36,19 +40,18 @@ li, ol, ul {
 
 h2 {
   margin: 0;
-  text-transform: uppercase;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Norican', cursive;
   font-size: var(--font-size-large);
   margin: 0;
 }
 
 button {
   margin: 6px;
-  border: 1px solid transparent;
+  border: 2px solid var(--color-start);
   padding: .5rem 1rem;
-  color: var(--color-keys);
+  color: var(--color-start);
   font-size: var(--font-size-medium);
-  background-color: var(--color-keys-light);
+  background-color: var(--color-keys);
   border-radius: 5px;
   -webkit-transition: var(--transition);
   -o-transition: var(--transition);
@@ -90,19 +93,22 @@ button {
   padding: 20px 1px 0 1px;
   margin-right: 2px;
   color: transparent;
-  background: var(--color-neutral-light);
+  background: var(--color-start);
   border-radius: 5px;
+  margin-bottom: 8px;
 }
 
 .space {
-  width: 15px;
+  width: 20px;
 }
 
 .show {
-  color: #76CE82;
-  background-color: #FFF;
-  font-family: 'Montserrat', Verdana, Arial, sans-sans-serif;
-  font-size: var(--font-size-large);
+  color: #FFF;
+  background-color: var(--color-start);
+  font-family: 'Raleway', Verdana, Arial, sans-sans-serif;
+  text-transform: uppercase;
+  font-size: var(--font-size-medium);
+  margin-bottom: 8px;
 }
 
 /* Keyboard */
@@ -113,7 +119,7 @@ button {
 }
 
 .chosen {
-  background: var(--color-neutral);
+  background: var(--color-start);
   border-radius: 5px;
   font-size: var(--font-size-medium);
   color: #FFFFFF;
@@ -152,7 +158,7 @@ button {
 
 .start a {
   color: var(--color-start);
-  font-family: 'Montserrat', Verdana, Arial, sans-serif;
+  font-family: 'Raleway', Verdana, Arial, sans-serif;
 }
 
 .win {

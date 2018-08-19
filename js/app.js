@@ -4,6 +4,8 @@ const keys = document.querySelectorAll('.keyrow button');
 const phrase = document.getElementById('phrase');
 let missed = 0;
 const gameStart = document.getElementsByClassName('btn__reset')[0];
+const title = document.getElementsByClassName('title');
+
 
 // Change cursor to pointer over start button
 gameStart.style.cursor = "pointer";
@@ -74,43 +76,45 @@ function checkLetter(button) {
   return letterFound;
 }
 
+// Function to change overlay according to win/lose
+
+function results(className, message) {
+    overlay.classList = className;
+    overlay.style.display = "flex";
+    gameStart.textContent = "Reset";
+    title.innerHTML = message;
+  }
+
+// Function to check with each button pressed to see if game is won or lost
+
+function checkWin() {
+  const lettersGuessed = document.getElementsByClassName('show');
+  const totalLetters = document.getElementsByClassName('letters');
+  const overlay = document.getElementById('overlay');
+  if (lettersGuessed.length === totalLetters.length && lettersGuessed.length !== 0) {
+    results("win", "Congratulations! You're going to Disney World!");
+  }
+  else if (missed >= 5) {
+    results("lose", "You lose! Better luck next time!");
+  }
+}
+
 // Listen to only button events from the keyboard
-
-keyboard.addEventListener('click', (e) => {
-  // When a letter is clicked, add 'chosen' class to that button
-  e.target.classList.add('chosen');
-  //and disable the button by adding "disabled" attribute
-  e.target.createAttribute('disabled');
-  //Pass the button to the checkLetter function,
-  checkLetter(e.target);
-})
-
-
-
-
-
-
-//
-//
-// function checkLetter(clicked) {
-//   const lettersInAnswer = document.getElementsByClassName('letter');
-//   for (let i = 0; i < lettersInAnswer.length; i +=1) {
-//     const guess = clicked.textContent;
-//       if (lettersInAnswer[i].textContent.toLowerCase() === guess) {
-//       lettersInAnswer[i].classList.add('show');
-//       const letterMatch = guess;
-//       return letterMatch;
-//     }
-//     else {
-//       return null;
-//     }
-//   }
-// };
-//
-//
-// for (let i = 0; i < keys.length; i +=1) {
-//   keys[i].addEventListener('click', (e) => {
-//     e.target.className = "chosen";
-//     const letterFound = checkLetter(e.target);
-//   })
-// };
+for (let i = 0; i < keys.length; i +=1) {
+  keys[i].addEventListener('click', (e) => {
+    // When a letter is clicked, add 'chosen' class to that button
+    e.target.classList.add('chosen');
+    //and disable the button by adding "disabled" attribute
+    e.target.setAttribute('disabled', true);
+    //Pass the button to the checkLetter function,
+    let letterFound = checkLetter(e.target);
+    // Check value of letterFound variable
+    if (letterFound === null) {
+      // If null, remove a try from scoreboard
+      const scoreboard = document.getElementById('scoreboard');
+      scoreboard.firstElementChild.children[missed].firstElementChild.src = "images/lostHeart.png";
+      missed += 1;
+    }
+    checkWin();
+  })
+}
