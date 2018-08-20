@@ -5,6 +5,7 @@ const phrase = document.getElementById('phrase');
 let missed = 0;
 const gameStart = document.getElementsByClassName('btn__reset')[0];
 const title = document.getElementsByClassName('title')[0];
+let spaces = document.getElementsByClassName('space');
 
 
 // Change cursor to pointer over start button
@@ -35,13 +36,16 @@ function getRandomPhraseAsArray(array) {
   return letters;
 };
 
+
 // Set phrase letters array to global variable
 
 let phraseLetters = getRandomPhraseAsArray(phrases);
 
+
 // Add phrase to the game board
 
 function addPhraseToDisplay(array) {
+  let words = 0;
   for (let i = 0; i < array.length; i += 1) {
     const li = document.createElement('li');
     const ul = document.getElementById('phrase');
@@ -52,6 +56,11 @@ function addPhraseToDisplay(array) {
     }
     else if (array[i] === ' '){
       li.className = "space";
+      words += 1;
+    }
+    if (words === 3 || words === 6) {
+      let newLine = document.createElement('br');
+      phrase.children[0].appendChild(newLine);
     }
   }
 };

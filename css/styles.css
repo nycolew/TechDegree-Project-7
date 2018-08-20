@@ -109,7 +109,7 @@ button {
   text-transform: uppercase;
   font-size: var(--font-size-medium);
   margin-bottom: 8px;
-  transition: all 1s;
+  transition: var(--transition);
 }
 
 /* Keyboard */
