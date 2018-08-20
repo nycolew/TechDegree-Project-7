@@ -56,16 +56,17 @@ function addPhraseToDisplay(array) {
     }
     else if (array[i] === ' '){
       li.className = "space";
-      words += 1;
+      words++;
+      console.log(words);
     }
-    if (words === 3 || words === 6) {
-      let newLine = document.createElement('br');
-      phrase.children[0].appendChild(newLine);
-    }
+  }
+  if (words === 3 || words === 6) {
+    let newLine = document.createElement('br');
+    phrase.children[0].appendChild(newLine);
   }
 };
 
-addPhraseToDisplay(phraseLetters);
+//addPhraseToDisplay(phraseLetters);
 
 // Create a checkLetter function.
 
