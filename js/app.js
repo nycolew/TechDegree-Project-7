@@ -21,9 +21,9 @@ gameStart.addEventListener('click', (e) => {
 const phrases = [
   'I aim to misbehave',
   'A word after a word after a word is power',
-  'It does not do to dwell on dreams and forget to live',
+  'All wisdom ends in paradox',
   'To love is to act',
-  'Somewhere something incredible is waiting to be known',
+  'We are made of star stuff',
   'Time for some thrilling heroics',
   'The trouble is you think you have time'
 ];
@@ -141,7 +141,7 @@ function newPhrase() {
   for (let i = spaces.length - 1; i >=0; i--) {
     spaces[i].parentNode.removeChild(spaces[i]);
   }
-  for (let i = lineBreaks.length; i >=0; i--) {
+  for (let i = lineBreaks.length - 1; i >=0; i--) {
     lineBreaks[i].parentNode.removeChild(lineBreaks[i]);
   }
   phraseLetters = getRandomPhraseAsArray(phrases);
