@@ -49,7 +49,7 @@ function addPhraseToDisplay(array) {
   for (let i = 0; i < array.length; i += 1) {
     const li = document.createElement('li');
     const ul = document.getElementById('phrase');
-    ul.appendChild(li);
+    ul.children[0].appendChild(li);
     li.textContent = array[i];
     if (array[i] !== ' ') {
       li.className = "letter";
@@ -57,12 +57,11 @@ function addPhraseToDisplay(array) {
     else if (array[i] === ' '){
       li.className = "space";
       words++;
-      console.log(words);
+      if (words === 3 || words === 6) {
+        let newLine = document.createElement('br');
+        phrase.children[0].appendChild(newLine);
+      }
     }
-  }
-  if (words === 3 || words === 6) {
-    let newLine = document.createElement('br');
-    phrase.children[0].appendChild(newLine);
   }
 };
 
@@ -135,11 +134,15 @@ for (let i = 0; i < keys.length; i +=1) {
 function newPhrase() {
   let letters = document.getElementsByClassName('letter');
   let spaces = document.getElementsByClassName('space');
+  let lineBreaks = document.getElementsByTagName('br');
   for (let i = letters.length - 1; i >= 0; i--) {
     letters[i].parentNode.removeChild(letters[i]);
   }
   for (let i = spaces.length - 1; i >=0; i--) {
     spaces[i].parentNode.removeChild(spaces[i]);
+  }
+  for (let i = lineBreaks.length; i >=0; i--) {
+    lineBreaks[i].parentNode.removeChild(lineBreaks[i]);
   }
   phraseLetters = getRandomPhraseAsArray(phrases);
   addPhraseToDisplay(phraseLetters);
